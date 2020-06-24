@@ -1,0 +1,42 @@
+.Container {
+    display: flex;
+    flex-direction: row;
+    background-color: #f4f4f4;
+    max-width: 350px;
+    border-style: double;
+    align-items: center;
+}
+
+.ligne1 {
+    display: flex;
+    flex-direction: column;
+    justify-content:space-around;
+    align-items: center;
+    height: 600px;
+}
+
+@media screen and (max-width:920px) {
+
+   
+    .ligne1 {
+        display: flex;
+        flex-direction: column;
+        justify-content:space-around;
+        align-items: center;
+        margin-bottom: 20px;
+        background-color: lightgreen;
+        
+    }
+
+    .ligne1 .Container {
+        display: flex;
+        flex-direction: column;
+        background-color: #8cfff9;
+        max-width: 350px;
+        border-style:  dashed;
+        align-items: center;
+        justify-content:space-between;
+        
+    }
+
+}

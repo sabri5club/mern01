@@ -1,0 +1,19 @@
+.container-process {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    justify-items: center;
+    background-color: rgb(223, 241, 247);
+    margin: 20px ;
+    
+    
+    
+}
+.container-g {
+    align-items: center;
+    justify-items: center;
+    width:700px;
+    margin: auto;
+   
+}

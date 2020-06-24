@@ -1,0 +1,43 @@
+.container-mindset1 {
+
+     display: flex;
+     width: 25%;
+    align-items: center;
+    justify-content: center;
+    background-color: khaki;
+    margin :20px
+}
+.container-mindset2 {
+
+    display: flex;
+    width: 25%;
+   align-items: center;
+   justify-content: center;
+   background-color: rgb(109, 230, 135);
+   margin :20px
+}
+.container-mindset3 {
+
+    display: flex;
+    width: 25%;
+   align-items: center;
+   justify-content: center;
+   background-color: rgb(61, 160, 190);
+   margin :20px
+}
+
+.container-mindset4 {
+
+    display: flex;
+    width: 25%;
+   align-items: center;
+   justify-content: center;
+   background-color: rgb(186, 101, 207);
+   margin :20px;
+}
+
+.container-g {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}

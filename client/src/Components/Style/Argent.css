@@ -1,0 +1,12 @@
+.argent-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    
+}
+
+.item{
+    background-color: rgb(202, 243, 227);
+    border-style: dotted;
+    padding : 15px;
+}

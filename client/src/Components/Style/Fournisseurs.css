@@ -1,0 +1,21 @@
+.Container {
+    display: flex;
+    flex-direction: column;
+     background-color: #f7fcd1;
+    max-width: 500px;
+    padding: 20px;
+    border-style: double;
+    margin: 20px;
+}
+
+.ligne1 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content:space-around;
+    margin: auto;
+    height: 100%;
+    background-color: rgb(245, 226, 219);
+    max-width: 1200px;
+    align-items: center;
+}
