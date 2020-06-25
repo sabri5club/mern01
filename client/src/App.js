@@ -8,7 +8,9 @@ import Fournisseurs from './Components/Fournisseurs';
 import Process from './Components/Process';
 import Valeurs from './Components/Valeurs';
 import Connexion from './Components/Connexion';
+import Inscription from './Components/Inscription';
 import Argent from './Components/Argent';
+
 
 
 
@@ -26,6 +28,7 @@ class App extends Component {
     <Route path="/Valeurs" exact component={Valeurs}/>
     <Route path="/Argent" exact component={Argent}/>
     <Route path="/Connexion" exact component={Connexion}/>
+    <Route path="/Inscription" exact component={Inscription}/>
     </div>
     </Router>
   );

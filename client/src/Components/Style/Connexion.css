@@ -1,4 +1,13 @@
-.mef-container {
+.mef-container-login {
     display: flex;
     align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    margin: auto;
+    padding: 25px;
+  
 }
+.mef-connexion {
+    background-color: rgb(137, 198, 200);
+}
+

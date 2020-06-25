@@ -8,38 +8,38 @@ export default class Header extends Component {
     render() {
         return (
             <div>
-                <header class="hero">
-        <div id="navbar" class="navbar">
+                <header className="hero">
+        <div id="navbar" className="navbar">
             <div>
-            <h1 class="">Sookandco</h1>
+            <h1 className="">Sookandco</h1>
             <h2>Nouvelle Dashboard</h2>
             </div>
-            <i class="fa fa-bars" aria-hidden="true"></i>
+            <i className="fa fa-bars" aria-hidden="true"></i>
             <nav>
                 <ul>
                    <Link style={{textDecoration:"none"}} to="/">
-                    <li><a href="accueil">Accueil</a> </li>
+                    <li>Accuei </li>
                     </Link>
                     <Link to="/Strategie">
-                    <li><a href="tratégie">Stratégie</a></li>
+                    <li>Stratégie</li>
                     </Link>
                     <Link to="/Fournisseurs">
-                    <li><a href="Fournisseurs">Fournisseurs</a></li>
+                    <li>Fournisseurs</li>
                     </Link>
                     <Link to="/Commande">
-                    <li><a href="Commande">Commande</a></li>
+                    <li>Commande</li>
                     </Link>
                     <Link to="/Process">
-                    <li><a href="Process">Process</a></li>
+                    <li>Process</li>
                     </Link>
                     <Link to="/Valeurs">
-                    <li><a href="Valeurs">Valeurs</a></li>
+                    <li>Valeurs</li>
                     </Link>
                     <Link  to="/Argent">
-                    <li><a  href="Argent">Notre Argent</a></li>
+                    <li>Notre Argent</li>
                     </Link>
                     <Link  to="/Connexion">
-                    <li><a  href="Connexion">Connexion</a></li>
+                    <li>Connexion</li>
                     </Link>
                     <FontAwesomeIcon icon={faBars} />
                     
@@ -47,7 +47,7 @@ export default class Header extends Component {
             </nav>
         </div>
         </header>
-        <div class="content">
+        <div className="content">
             <h1>Début de Sookandco</h1>
             <p>Bientot l'ensemble des elements de sookandco</p>
 
