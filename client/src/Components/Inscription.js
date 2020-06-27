@@ -36,7 +36,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
     <Fragment>
         <div className="section">
         <div className="container">
-      <h1 className="large text-primary">Sign Up</h1>
+      <h1 className="large text-primary">Inscription</h1>
       <p className="lead">
         <i className="fas fa-user" /> Créer votre compte
       </p>
