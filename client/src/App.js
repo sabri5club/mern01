@@ -11,6 +11,7 @@ import Connexion from './Components/Connexion';
 import Inscription from './Components/Inscription';
 import Argent from './Components/Argent';
 import Alert from './Components/Alert';
+import PrivateRoute from './Components/Private/Privateroute';
 
 
 //Redux
@@ -35,12 +36,12 @@ const App = () => {
     <div className="App">
     <Header></Header>
     <Route path="/" exact component={Inscription}  />
-    <Route path="/Fournisseurs" exact component={Fournisseurs}/>
+    <PrivateRoute path="/Fournisseurs" exact component={Fournisseurs}/>
     <Route path="/Strategie" exact component={Strategie}/>
-    <Route path="/Commande" exact component={Commande}/>
+    <PrivateRoute path="/Commande" exact component={Commande}/>
     <Route path="/Process" exact component={Process}/>
     <Route path="/Valeurs" exact component={Valeurs}/>
-    <Route path="/Argent" exact component={Argent}/>
+    <PrivateRoute path="/Argent" exact component={Argent}/>
     <Alert />
     <Switch>
     <Route path="/Connexion" exact component={Connexion}/>
