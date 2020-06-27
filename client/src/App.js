@@ -38,7 +38,7 @@ const App = () => {
     <Route path="/" exact component={Inscription}  />
     <PrivateRoute path="/Fournisseurs" exact component={Fournisseurs}/>
     <Route path="/Strategie" exact component={Strategie}/>
-    <PrivateRoute path="/Commande" exact component={Commande}/>
+    <Route path="/Commande" exact component={Commande}/>
     <Route path="/Process" exact component={Process}/>
     <Route path="/Valeurs" exact component={Valeurs}/>
     <PrivateRoute path="/Argent" exact component={Argent}/>

@@ -9,6 +9,7 @@ import { logout } from '../actions/auth';
 
 const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const authLinks = (
+   
     <ul>
       
         <Link to='/'>
@@ -44,6 +45,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
       </li>
       </Link>
     </ul>
+ 
   );
 
   const guestLinks = (
@@ -60,10 +62,11 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
      
                   
     </ul>
+   
   );
 
   return (
-    <nav className='navbar bg-dark'>
+    <nav className='navbar hero'>
       <h1>
         <Link to='/'>
           <i className='fas fa-code' /> Sookandco

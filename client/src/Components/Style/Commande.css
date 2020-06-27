@@ -1,19 +1,62 @@
-.Container {
+.Box-user {
     display: flex;
     flex-direction: row;
-    background-color: #f4f4f4;
-    max-width: 350px;
+    background-color: #a0dfb5;
+    max-width: 800px;
     border-style: double;
     align-items: center;
+    flex-wrap: wrap;
+    padding: 20px;
+    margin : 5px 0px;
 }
 
-.ligne1 {
+.box-user-details {
+    background-color: cornflowerblue;
+}
+
+
+
+.wraper {
+    display: flex;
+    justify-content: space-around;
+    
+}
+
+.main-content {
+ 
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+    margin: 20px auto;
+    flex:1;
+   
+    
+}
+.sidebar-ajout{
+   
     display: flex;
     flex-direction: column;
-    justify-content:space-around;
+    justify-content: center;
     align-items: center;
-    height: 600px;
+    background-color: rgb(245, 233, 244);
+    height: 125px;
+    max-width: 350px;
+    flex :3;
+    order:2;
+    margin: 20px 0px;
+    border-style: solid 2px;
+    
+   
+   
 }
+
+.title-action {
+    color: dimgray;
+    padding: 20px;
+    font-size: large;
+
+}
+
 
 @media screen and (max-width:920px) {
 
