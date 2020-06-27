@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import {BrowserRouter as Router , Switch, Route } from 'react-router-dom';
 import './App.css';
 import Header from './Components/Header';
@@ -10,29 +10,47 @@ import Valeurs from './Components/Valeurs';
 import Connexion from './Components/Connexion';
 import Inscription from './Components/Inscription';
 import Argent from './Components/Argent';
+import Alert from './Components/Alert';
+
+
+//Redux
+
+import {Provider} from 'react-redux';
+import store from './store';
+import {loadUser} from './actions/auth';
+import setAuthToken from './utils/setAuthToken';
 
 
 
 
-class App extends Component {
-  render (){
+const App = () => {
+  useEffect(() => {
+    setAuthToken(localStorage.token);
+    store.dispatch(loadUser());
+  }, []);
+
   return (
+    <Provider store={store}>
     <Router>
     <div className="App">
     <Header></Header>
-    <Route path="/" />
+    <Route path="/"  />
     <Route path="/Fournisseurs" exact component={Fournisseurs}/>
     <Route path="/Strategie" exact component={Strategie}/>
     <Route path="/Commande" exact component={Commande}/>
     <Route path="/Process" exact component={Process}/>
     <Route path="/Valeurs" exact component={Valeurs}/>
     <Route path="/Argent" exact component={Argent}/>
+    <Alert />
+    <Switch>
     <Route path="/Connexion" exact component={Connexion}/>
     <Route path="/Inscription" exact component={Inscription}/>
+    </Switch>
     </div>
     </Router>
+    </Provider>
   );
-}
-}
+
+};
 
 export default App;

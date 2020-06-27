@@ -1,102 +1,77 @@
-
+import React, { Fragment, useState } from 'react';
+import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { login } from '../actions/auth';
 import './Style/Connexion.css';
-import Inscription from './Inscription';
-import React, {Fragment, useState } from 'react';
-import axios from 'axios';
-import { Link } from 'react-router-dom'
 
+const Login = ({ login, isAuthenticated }) => {
+  const [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  });
 
+  const { email, password } = formData;
 
-    const Connexion = () => {
+  const onChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
 
-        const [formData, setFormData] = useState({
-            email: '',
-            password: ''
-          
-        });
-    
-        const { email, password} = formData;
-    
-        const onChange = e => setFormData({...formData, [e.target.name]: e.target.value});
-    
-        const onSubmit = async e => {
-            e.preventDefault();
-            
-                console.log('Success')
-                //    const newUser = {
-                //        name,
-                //        email,
-                //        password
-                //     }
-    
-                //        try {
-                //            const config = {
-                //                headers: {
-                //                    'Content-Type': 'application/json'
-                //                }
-                //            }
-                //            const body = JSON.stringify(newUser);
-                //            const res = await axios.post('/api/user', body, config);
-                //            console.log(res.data);
-                //        } catch(err) {
-                //            console.error(err.response.data);
-    
-                //        }
-                 
-                
-            };
-        
-    return (
-               <Fragment>
-                   <div>
-            <h1>Bientot la page de connexion</h1>
-            <h2>Un mot de passe temporaire sera nécessaire pour l'accès au site internet</h2>
-            </div>
-        <div className="mef-container-login">
-            
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    login(email, password);
+  };
 
+  if (isAuthenticated) {
+    return <Redirect to="/dashboard" />;
+  }
 
-            {/* <div className="mef-register">
-            <Inscription></Inscription>
-            </div> */}
-
-
-     
-            <div className="mef-connexion">
-        <section className="container">
+  return (
+    <Fragment>
+        <div className="section">
+        <div className="container">
       <h1 className="large text-primary">Connexion</h1>
-      <p className="lead"><i className="fas fa-user"></i> Connexion au compte</p>
-      <form className="form" onSubmit={e => onSubmit(e)}>
+      <p className="lead">
+        <i className="fas fa-user" /> Connexion à votre compte
+      </p>
+      <form className="form" onSubmit={onSubmit}>
         <div className="form-group">
-          <input type="email" placeholder="Email Address" name="email" value={email} 
-           onChange= {e => onChange(e)}
-            required  />
+          <input
+            type="email"
+            placeholder="Email Address"
+            name="email"
+            value={email}
+            onChange={onChange}
+            required
+          />
         </div>
         <div className="form-group">
           <input
             type="password"
             placeholder="Password"
             name="password"
-            value={password} 
-           onChange= {e => onChange(e)}
+            value={password}
+            onChange={onChange}
             minLength="6"
           />
         </div>
-        
-        <input type="submit" className="btn btn-primary" value="Se connecter" />
+        <input type="submit" className="btn btn-primary" value="Login" />
       </form>
-    </section>
-    <p>Pas de compte encore?<Link to='/Inscription'>S'inscrire</Link></p>
-    </div>
+      <p className="my-1">
+        Pas de compte? <Link to="/inscription">Inscription</Link>
+      </p>
+      </div>
+      </div>
+    </Fragment>
+  );
+};
 
-    
-         
-        </div>
-        </Fragment>
-    );
-    
-    }
+Login.propTypes = {
+  login: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool
+};
 
-    export default Connexion
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
 
-
+export default connect(mapStateToProps, { login })(Login);

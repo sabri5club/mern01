@@ -1,86 +1,71 @@
-import React, {Fragment, useState } from 'react';
-import axios from 'axios';
-import { Link} from 'react-router-dom';
-import Connexion   from './Connexion';
+import React, { Fragment, useState } from 'react';
+import { connect } from 'react-redux';
+import { Link, Redirect } from 'react-router-dom';
+import { setAlert } from '../actions/alert';
+import { register } from '../actions/auth';
+import PropTypes from 'prop-types';
 import './Style/Inscription.css';
 
-const Inscription = () => {
+const Register = ({ setAlert, register, isAuthenticated }) => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    password2: ''
+  });
 
-    const [formData, setFormData] = useState({
-        name:'',
-        email: '',
-        password: '',
-        password2:""
-    });
+  const { name, email, password, password2 } = formData;
 
-    const {name, email, password, password2} = formData;
+  const onChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
 
-    const onChange = e => setFormData({...formData, [e.target.name]: e.target.value});
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    if (password !== password2) {
+      setAlert('Passwords do not match', 'danger');
+    } else {
+      register({ name, email, password });
+    }
+  };
 
-    const onSubmit = async e => {
-        e.preventDefault();
-        if(password !== password2) {
-            console.log('password not match');
-        } else {
+  if (isAuthenticated) {
+    return <Redirect to="/dashboard" />;
+  }
 
-            console.log('Success')
-            //    const newUser = {
-            //        name,
-            //        email,
-            //        password
-            //     }
-
-            //        try {
-            //            const config = {
-            //                headers: {
-            //                    'Content-Type': 'application/json'
-            //                }
-            //            }
-            //            const body = JSON.stringify(newUser);
-            //            const res = await axios.post('/api/user', body, config);
-            //            console.log(res.data);
-            //        } catch(err) {
-            //            console.error(err.response.data);
-
-            //        }
-               };
-            
-        };
-    
-    return (
-    
-       <Fragment>
-
-        <section className="container">
-      <h1 className="large text-primary">Inscription</h1>
-      <p className="lead"><i className="fas fa-user"></i> Créer votre compte</p>
-      <form className="form" onSubmit={e => onSubmit(e)}>
+  return (
+    <Fragment>
+        <div className="section">
+        <div className="container">
+      <h1 className="large text-primary">Sign Up</h1>
+      <p className="lead">
+        <i className="fas fa-user" /> Créer votre compte
+      </p>
+      <form className="form" onSubmit={onSubmit}>
         <div className="form-group">
-          <input 
-          type="text" 
-          placeholder="Name" 
-          name="name" 
-           value={name} 
-           onChange= {e => onChange(e)}
-            required />
+          <input
+            type="text"
+            placeholder="Name"
+            name="name"
+            value={name}
+            onChange={onChange}
+          />
         </div>
         <div className="form-group">
-          <input type="email" placeholder="Email Address" name="email" value={email} 
-           onChange= {e => onChange(e)}
-            required  />
-          <small className="form-text"
-            >This site uses Gravatar so if you want a profile image, use a
-            Gravatar email</small
-          >
+          <input
+            type="email"
+            placeholder="Email Address"
+            name="email"
+            value={email}
+            onChange={onChange}
+          />
         </div>
         <div className="form-group">
           <input
             type="password"
             placeholder="Password"
             name="password"
-            value={password} 
-           onChange= {e => onChange(e)}
-            minLength="6"
+            value={password}
+            onChange={onChange}
           />
         </div>
         <div className="form-group">
@@ -88,20 +73,29 @@ const Inscription = () => {
             type="password"
             placeholder="Confirm Password"
             name="password2"
-            value={password2} 
-           onChange= {e => onChange(e)}
-            minLength="6"
+            value={password2}
+            onChange={onChange}
           />
         </div>
-        <input type="submit" className="btn btn-primary" value="S'inscrire" />
+        <input type="submit" className="btn btn-primary" value="Inscription" />
       </form>
       <p className="my-1">
-        Déjà un compte ? <Link to ="/Connexion">Se connecter</Link>
+        Vous avez déjà un compte ? <Link to="/Connexion">Connexion</Link>
       </p>
-    </section>
-      </Fragment>);
-         
-      };
+      </div>
+      </div>
+    </Fragment>
+  );
+};
 
+Register.propTypes = {
+  setAlert: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool
+};
 
-export default Inscription
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, { setAlert, register })(Register);

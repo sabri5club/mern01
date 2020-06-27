@@ -1,59 +1,91 @@
-import React, { Component } from 'react'
+import React, { Fragment } from 'react'
 import {Link} from 'react-router-dom'
 import './Style/Header.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCoffee, faBars } from '@fortawesome/free-solid-svg-icons'
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { logout } from '../actions/auth';
 
-export default class Header extends Component {
-    render() {
-        return (
-            <div>
-                <header className="hero">
-        <div id="navbar" className="navbar">
-            <div>
-            <h1 className="">Sookandco</h1>
-            <h2>Nouvelle Dashboard</h2>
-            </div>
-            <i className="fa fa-bars" aria-hidden="true"></i>
-            <nav>
-                <ul>
-                   <Link style={{textDecoration:"none"}} to="/">
-                    <li>Accuei </li>
-                    </Link>
-                    <Link to="/Strategie">
-                    <li>Stratégie</li>
-                    </Link>
-                    <Link to="/Fournisseurs">
-                    <li>Fournisseurs</li>
-                    </Link>
-                    <Link to="/Commande">
-                    <li>Commande</li>
-                    </Link>
-                    <Link to="/Process">
-                    <li>Process</li>
-                    </Link>
-                    <Link to="/Valeurs">
-                    <li>Valeurs</li>
-                    </Link>
-                    <Link  to="/Argent">
-                    <li>Notre Argent</li>
-                    </Link>
-                    <Link  to="/Connexion">
-                    <li>Connexion</li>
-                    </Link>
-                    <FontAwesomeIcon icon={faBars} />
-                    
-                </ul>
-            </nav>
-        </div>
-        </header>
-        <div className="content">
-            <h1>Début de Sookandco</h1>
-            <p>Bientot l'ensemble des elements de sookandco</p>
+const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
+  const authLinks = (
+    <ul>
+      
+        <Link to='/'>
+          <i className='fas fa-user' />{' '}
+          <span className='hide-sm'>Accueil</span>
+        </Link>
+      <Link to="/Strategie">
+		  
+          <li>Stratégie</li>
+          </Link>
+            
+          <Link to="/Fournisseurs">
+          <li>Fournisseurs</li>
+          </Link>
+          <Link to="/Commande">
+          <li>Commande</li>
+          </Link>
+          <Link to="/Process">
+          <li>Process</li>
+          </Link>
+          <Link to="/Valeurs">
+          <li>Valeurs</li>
+          </Link>
+          <Link  to="/Argent">
+          <li>Notre Argent</li>
+          </Link>
+          <Link onClick={logout}>
+      <li>
+         
+          <i className='fas fa-sign-out-alt' />{' '}
+          <span className='hide-sm'>Déconnexion</span>
+        
+      </li>
+      </Link>
+    </ul>
+  );
 
-        </div>
-   
-            </div>
-        )
-    }
-}
+  const guestLinks = (
+    <ul>
+      <li>
+        <Link to='/Accueil'>Accueil</Link>
+      </li>
+      <li>
+        <Link to='/Inscription'>Inscription</Link>
+      </li>
+      <li>
+        <Link to='/connexion'>Connexion</Link>
+      </li>
+     
+                  
+    </ul>
+  );
+
+  return (
+    <nav className='navbar bg-dark'>
+      <h1>
+        <Link to='/'>
+          <i className='fas fa-code' /> Sookandco
+        </Link>
+      </h1>
+      {!loading && (
+        <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
+      )}
+    </nav>
+  );
+};
+
+Navbar.propTypes = {
+  logout: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(
+  mapStateToProps,
+  { logout }
+)(Navbar);
