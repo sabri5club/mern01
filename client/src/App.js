@@ -34,7 +34,7 @@ const App = () => {
     <Router>
     <div className="App">
     <Header></Header>
-    <Route path="/"  />
+    <Route path="/" exact component={Inscription}  />
     <Route path="/Fournisseurs" exact component={Fournisseurs}/>
     <Route path="/Strategie" exact component={Strategie}/>
     <Route path="/Commande" exact component={Commande}/>
