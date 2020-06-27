@@ -1,7 +1,7 @@
 .Box-user {
     display: flex;
     flex-direction: row;
-    background-color: #a0dfb5;
+    background-color: #dbdddb;
     max-width: 800px;
     border-style: double;
     align-items: center;
@@ -10,15 +10,17 @@
     margin : 5px 0px;
 }
 
-.box-user-details {
-    background-color: cornflowerblue;
+.Box-user-details {
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
 }
 
 
 
 .wraper {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     
 }
 
@@ -38,20 +40,20 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgb(245, 233, 244);
+    background-color: rgb(161, 214, 186);
     height: 125px;
     max-width: 350px;
     flex :3;
     order:2;
     margin: 20px 0px;
-    border-style: solid 2px;
+    border-style: solid 5px;
     
    
    
 }
 
 .title-action {
-    color: dimgray;
+    color: rgb(117, 114, 114);
     padding: 20px;
     font-size: large;
 

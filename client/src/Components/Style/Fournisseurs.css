@@ -2,20 +2,40 @@
     display: flex;
     flex-direction: column;
      background-color: #f7fcd1;
-    max-width: 500px;
+    max-width: 800px;
     padding: 20px;
     border-style: double;
-    margin: 20px;
+    margin: 20px auto;
 }
 
 .ligne1 {
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+    margin: 20px auto;
+    flex:1;
+   
+}
+
+.sidebar-ajout{
+   
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
-    justify-content:space-around;
-    margin: auto;
-    height: 100%;
-    background-color: rgb(245, 226, 219);
-    max-width: 1200px;
+    justify-content: center;
     align-items: center;
+    background-color: rgb(161, 214, 186);
+    height: 125px;
+    max-width: 350px;
+    flex :3;
+    order:2;
+    margin: 20px 0px;
+    border-style: solid 5px;
+    
+   
+   
+}
+
+.wraper {
+    display: flex;
+    justify-content: space-evenly;
 }

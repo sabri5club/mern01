@@ -11,12 +11,14 @@ export default function Commande() {
             <div class="main-content">
             <div class="Box-user">
             <h3>Marie france gillis</h3>
-            <h3>Reference commande</h3>
             <h4>Transporteur</h4>
             <h4>a CONTACTER 17/06/2020 JEUDI</h4>
             <h4>Date à envoyé</h4>
             <div className="Box-user-details">
                 <h4>Détails de la commande</h4>
+                <h4>Détails de la commande</h4>
+                <h4>Détails de la commande</h4>
+                <h4>Statut : Urgent</h4>
             </div>
             </div>
             <div class="Box-user">
