@@ -1,94 +1,139 @@
-import React, { Fragment } from 'react'
-import {Link} from 'react-router-dom'
-import './Style/Header.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee, faBars } from '@fortawesome/free-solid-svg-icons'
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { logout } from '../actions/auth';
+import React, { Fragment } from "react";
+import { Link } from "react-router-dom";
+import "./Style/Header.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCoffee, faBars } from "@fortawesome/free-solid-svg-icons";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { logout } from "../actions/auth";
 
 const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const authLinks = (
-   
-    <ul>
-      
-        <Link to='/'>
-          <i className='fas fa-user' />{' '}
-          <span className='hide-sm'>Accueil</span>
-        </Link>
-      <Link to="/Strategie">
-		  
-          <li>Stratégie</li>
-          </Link>
-            
-          <Link to="/Fournisseurs">
-          <li>Fournisseurs</li>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarColor01"
+        aria-controls="navbarColor01"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+          <Link to="/Strategie">
+            <li class="nav-item active">
+              <a class="nav-link" href="livres.html">
+                Stratégie <span class="sr-only">(current)</span>
+              </a>
+            </li>
           </Link>
           <Link to="/Commande">
-          <li>Commande</li>
+            <li class="nav-item active">
+              <a class="nav-link" href="livres.html">
+                Commandes<span class="sr-only">(current)</span>
+              </a>
+            </li>
+          </Link>
+          <Link to="/Fournisseur">
+            <li class="nav-item active">
+              <a class="nav-link" href="livres.html">
+                Fournisseur<span class="sr-only">(current)</span>
+              </a>
+            </li>
           </Link>
           <Link to="/Process">
-          <li>Process</li>
+            <li class="nav-item active">
+              <a class="nav-link" href="livres.html">
+                Process<span class="sr-only">(current)</span>
+              </a>
+            </li>
+          </Link>
+          <Link to="/Argent">
+            <li class="nav-item active">
+              <a class="nav-link" href="livres.html">
+                Argent<span class="sr-only">(current)</span>
+              </a>
+            </li>
           </Link>
           <Link to="/Valeurs">
-          <li>Valeurs</li>
+            <li class="nav-item active">
+              <a class="nav-link" href="livres.html">
+                Valeurs<span class="sr-only">(current)</span>
+              </a>
+            </li>
           </Link>
-          <Link  to="/Argent">
-          <li>Notre Argent</li>
-          </Link>
-          <Link onClick={logout}>
-      <li>
-         
-          <i className='fas fa-sign-out-alt' />{' '}
-          <span className='hide-sm'>Déconnexion</span>
-        
-      </li>
-      </Link>
-    </ul>
- 
+          <li onClick={logout} class="nav-item active">
+            <a class="nav-link" href="livres.html">
+              Déconnexion<span class="sr-only">(current)</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
   );
 
   const guestLinks = (
-    <ul>
-      <li>
-        <Link to='/Accueil'>Accueil</Link>
-      </li>
-      <li>
-        <Link to='/Inscription'>Inscription</Link>
-      </li>
-      <li>
-        <Link to='/connexion'>Connexion</Link>
-      </li>
-     
-                  
-    </ul>
-   
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarColor01"
+        aria-controls="navbarColor01"
+        aria-expanded="True"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+          <Link to="/Connexion">
+            <li class="nav-item active">
+              <a class="nav-link" href="livres.html">
+                Connexion<span class="sr-only">(current)</span>
+              </a>
+            </li>
+          </Link>
+          <Link to="/Inscription">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">
+                Inscription<span class="sr-only">(current)</span>
+              </a>
+            </li>
+          </Link>
+          <Link to="/Accueil">
+            <li class="nav-item active">
+              <a class="nav-link" href="livres.html">
+                Accueil<span class="sr-only">(current)</span>
+              </a>
+            </li>
+          </Link>
+        </ul>
+      </div>
+    </nav>
   );
 
   return (
-    <nav className='navbar hero'>
-      <h1>
-        <Link to='/'>
-          <i className='fas fa-code' /> Sookandco
-        </Link>
-      </h1>
+    <div>
       {!loading && (
         <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
       )}
-    </nav>
+    </div>
   );
 };
 
 Navbar.propTypes = {
   logout: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
-  auth: state.auth
+const mapStateToProps = (state) => ({
+  auth: state.auth,
 });
 
-export default connect(
-  mapStateToProps,
-  { logout }
-)(Navbar);
+export default connect(mapStateToProps, { logout })(Navbar);

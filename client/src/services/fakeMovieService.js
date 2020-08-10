@@ -8,6 +8,7 @@ const commandes = [
     numberInStock: 6,
     dailyRentalRate: "En cours",
     date:"2020-08-17",
+    urgence: "Elevée",
     publishDate: "2018-01-03T19:04:28.809Z",
     liked:true
   },
@@ -18,6 +19,7 @@ const commandes = [
     numberInStock: 5,
     dailyRentalRate: "En cours",
     date:"2020-08-17",
+    urgence: "Moyenne",
   },
   {
     _id: "5b21ca3eeb7f6fbccd471817",
@@ -25,6 +27,7 @@ const commandes = [
     Plateforme: { _id: "5b21ca3eeb7f6fbccd471820", name: "Etsy" },
     numberInStock: 8,
     date:"2020-08-17",
+    urgence: "Moyenne",
     dailyRentalRate: "A envoyer"
   },
   {
@@ -33,6 +36,7 @@ const commandes = [
     Plateforme: { _id: "5b21ca3eeb7f6fbccd471814", name: "Manuelle" },
     numberInStock: 7,
     date:"2020-08-17",
+    urgence: "Moyenne",
     dailyRentalRate: "A envoyer"
   },
   {
@@ -41,6 +45,7 @@ const commandes = [
     Plateforme: { _id: "5b21ca3eeb7f6fbccd471814", name: "Manuelle" },
     numberInStock: 7,
     date:"2020-08-17",
+    urgence: "Moyenne",
     dailyRentalRate: "A envoyer"
   },
   {
@@ -49,6 +54,7 @@ const commandes = [
     Plateforme: { _id: "5b21ca3eeb7f6fbccd471814", name: "Manuelle" },
     numberInStock: 7,
     date:"2020-08-17",
+    urgence: "Moyenne",
     dailyRentalRate: "A envoyer"
   },
   {
@@ -57,6 +63,7 @@ const commandes = [
     Plateforme: { _id: "5b21ca3eeb7f6fbccd471820", name: "Etsy" },
     numberInStock: 7,
     date:"2020-08-17",
+    urgence: "Moyenne",
     dailyRentalRate: "Problème"
   },
   {
@@ -65,6 +72,7 @@ const commandes = [
     Plateforme: { _id: "5b21ca3eeb7f6fbccd471820", name: "Etsy" },
     numberInStock: 4,
     date:"2020-08-17",
+    urgence: "Elevée",
     dailyRentalRate: "A envoyer"
   },
   {
@@ -73,6 +81,7 @@ const commandes = [
     Plateforme: { _id: "5b21ca3eeb7f6fbccd471818", name: "Prestashop" },
     numberInStock: 7,
     date:"2020-08-17",
+    urgence: "Basse",
     dailyRentalRate: "A envoyer"
   }
 ];

@@ -16,17 +16,19 @@ class CommandeTable extends Component {
   render() {
     const { movies, onDelete, onLike } = this.props;
     return (
-      <div className="table-1">
+      <div className="container-fluid">
         <table>
           <thead>
-            <tr>
+            <tr className="table-dark">
               <th onClick={() => this.raiseSort("title")}>Titre</th>
-              <th onClick={() => this.raiseSort("Plateforme.name")}>Plateforme</th>
+              <th onClick={() => this.raiseSort("Plateforme.name")}>
+                Plateforme
+              </th>
               <th onClick={() => this.raiseSort("numberInStock")}>Stock</th>
               <th onClick={() => this.raiseSort("dailyRentalRate")}>Statut</th>
               <th>Date</th>
-              <th onClick={() => this.raiseSort("")}>Like</th>
-              
+              <th onClick={() => this.raiseSort("")}>Urgence</th>
+             <th>Détails</th>
             </tr>
           </thead>
           <tbody>
@@ -37,8 +39,8 @@ class CommandeTable extends Component {
                 <td>{movie.numberInStock}</td>
                 <td>{movie.dailyRentalRate}</td>
                 <td>{movie.date}</td>
-                <td>{movie.like}</td>
-                <td>{movie.like}</td>
+                <td>{movie.urgence}</td>
+                <td><button className="btn btn-secondary">Détails</button></td>
                 <td>
                   <Like
                     liked={movie.liked}
@@ -46,11 +48,12 @@ class CommandeTable extends Component {
                   ></Like>
                 </td>
                 <td onClick={() => onDelete(movie)}>
-                  <button className="btn btn-danger btn-sm">Delete</button>
+                  <button className="btn btn-danger btn-sm">Supprimer</button>
                 </td>
               </tr>
             ))}
           </tbody>
+          <button className="btn btn-success text-center">Ajouter</button>
         </table>
       </div>
     );
