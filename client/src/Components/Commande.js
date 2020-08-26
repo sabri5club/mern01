@@ -52,6 +52,10 @@ class Commande extends Component {
   handleSort = (sortColumn) => {
     this.setState({ sortColumn });
   };
+  handleAdd = (movie) => {
+    const movies = this.state.movies;
+    this.setState({ movies });
+  };
   render() {
     const { length: count } = this.state.movies;
     const {
@@ -91,6 +95,7 @@ class Commande extends Component {
                 sortColumn={sortColumn}
                 onLike={this.handleLike}
                 onDelete={this.handleDelete}
+                onAdd={this.handleAdd}
                 onSort={this.handleSort}
               />
               <Pagination

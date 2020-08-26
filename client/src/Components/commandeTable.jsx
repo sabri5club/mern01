@@ -28,7 +28,7 @@ class CommandeTable extends Component {
               <th onClick={() => this.raiseSort("dailyRentalRate")}>Statut</th>
               <th>Date</th>
               <th onClick={() => this.raiseSort("")}>Urgence</th>
-             <th>Détails</th>
+              <th>Détails</th>
             </tr>
           </thead>
           <tbody>
@@ -40,7 +40,9 @@ class CommandeTable extends Component {
                 <td>{movie.dailyRentalRate}</td>
                 <td>{movie.date}</td>
                 <td>{movie.urgence}</td>
-                <td><button className="btn btn-secondary">Détails</button></td>
+                <td>
+                  <button className="btn btn-secondary">Détails</button>
+                </td>
                 <td>
                   <Like
                     liked={movie.liked}
@@ -53,6 +55,11 @@ class CommandeTable extends Component {
               </tr>
             ))}
           </tbody>
+          <form>
+            <h1>Hello</h1>
+            <p>Enter your name:</p>
+            <input type="text" />
+          </form>
           <button className="btn btn-success text-center">Ajouter</button>
         </table>
       </div>

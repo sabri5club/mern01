@@ -94,7 +94,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
         <ul class="navbar-nav mr-auto">
           <Link to="/Connexion">
             <li class="nav-item active">
-              <a class="nav-link" href="livres.html">
+              <a class="nav-link" href="#">
                 Connexion<span class="sr-only">(current)</span>
               </a>
             </li>
@@ -108,7 +108,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
           </Link>
           <Link to="/Accueil">
             <li class="nav-item active">
-              <a class="nav-link" href="livres.html">
+              <a class="nav-link" href="#">
                 Accueil<span class="sr-only">(current)</span>
               </a>
             </li>
