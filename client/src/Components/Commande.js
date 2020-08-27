@@ -7,6 +7,7 @@ import { paginate } from "../utils/paginate.js";
 import CommandeTable from "./commandeTable";
 import ListGroup from "./listGroup";
 import Pagination from "./pagination";
+import { Link, Redirect } from 'react-router-dom';
 
 class Commande extends Component {
   state = {
@@ -85,6 +86,7 @@ class Commande extends Component {
                 onItemSelect={this.handleGenderSelect}
               />
             </div>
+            <Link to="/commandes/new" className="btn btn-primary" style={{marginBottom:20}}> Nouvelle commande </Link>
             <div className="affichage">
               <p>
                 Il y a {filtered.length} commandes en attente dans la base de

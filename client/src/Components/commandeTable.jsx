@@ -60,7 +60,6 @@ class CommandeTable extends Component {
             <p>Enter your name:</p>
             <input type="text" />
           </form>
-          <button className="btn btn-success text-center">Ajouter</button>
         </table>
       </div>
     );

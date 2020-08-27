@@ -86,8 +86,17 @@ const commandes = [
   },
   {
     _id: "5b21ca3eeb7f6fbccd471821",
-    titre: "Private message",
+    titre: "Snap message",
     Plateforme: { _id: "5b21ca3eeb7f6fbccd471819", name: "Snapchat" },
+    numberInStock: 7,
+    date:"2020-08-17",
+    urgence: "Basse",
+    dailyRentalRate: "A envoyer"
+  },
+  {
+  _id: "5b21ca3eeb7f6fbccd471821",
+    titre: "Insta message",
+    Plateforme: { _id: "5b21ca3eeb7f6fbccd471821", name: "Instragram" },
     numberInStock: 7,
     date:"2020-08-17",
     urgence: "Basse",
