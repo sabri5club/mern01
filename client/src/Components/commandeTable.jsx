@@ -1,11 +1,14 @@
 import React, { Component } from "react";
+import {Link} from "react-router-dom";
 import Like from "./like";
 import Table from "./common/table";
 import "./Style/commandeTable.css";
 
 class CommandeTable extends Component {
   columns = [
-    { path: "titre", label: "Titre" },
+    { path: "titre", label: "Titre", 
+    content: commande  => <Link to ={`/commandes/${commande._id}`}>{commande.titre}</Link> 
+  },
     { path: "plateforme.name", label: "Plateforme" },
     { path: "numberInStock", label: "Stock" },
     { path: "dailyRentalRate", label: "Rate" },

@@ -114,7 +114,7 @@ export function getCommande(id) {
 
 export function saveCommande(commande) {
   let commandeInDb = commandes.find((m) => m._id === commande._id) || {};
-  commandeInDb.title = commande.title;
+  commandeInDb.titre = commande.titre;
   commandeInDb.plateforme = plateformesAPI.plateformes.find(
     (g) => g._id === commande.plateformeId
   );

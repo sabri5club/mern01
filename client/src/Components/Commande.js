@@ -22,7 +22,10 @@ class Commande extends Component {
   };
 
   componentDidMount() {
-    const plateformes = [{ _id: "", name: "All Genres" }, ...getPlateformes()];
+    const plateformes = [
+      { _id: "", name: "Toute plateformes" },
+      ...getPlateformes(),
+    ];
 
     this.setState({ commandes: getCommandes(), plateformes });
   }

@@ -7,23 +7,19 @@ import { getPlateformes } from "../services/fakeGenreService";
 class CommandeForm extends Form {
   state = {
     data: {
-      title: "",
+      titre: "",
       plateformeId: "",
       numberInStock: "",
-      dailyRentalRate: ""
+      dailyRentalRate: "",
     },
     plateformes: [],
-    errors: {}
+    errors: {},
   };
 
   schema = {
     _id: Joi.string(),
-    title: Joi.string()
-      .required()
-      .label("Title"),
-    plateformeId: Joi.string()
-      .required()
-      .label("plateforme"),
+    titre: Joi.string().required().label("Titre"),
+    plateformeId: Joi.string().required().label("plateforme"),
     numberInStock: Joi.number()
       .required()
       .min(0)
@@ -33,7 +29,7 @@ class CommandeForm extends Form {
       .required()
       .min(0)
       .max(10)
-      .label("Daily Rental Rate")
+      .label("Daily Rental Rate"),
   };
 
   componentDidMount() {
@@ -52,10 +48,10 @@ class CommandeForm extends Form {
   mapToViewModel(commande) {
     return {
       _id: commande._id,
-      title: commande.title,
+      titre: commande.titre,
       plateformeId: commande.plateforme._id,
       numberInStock: commande.numberInStock,
-      dailyRentalRate: commande.dailyRentalRate
+      dailyRentalRate: commande.dailyRentalRate,
     };
   }
 
@@ -70,8 +66,12 @@ class CommandeForm extends Form {
       <div>
         <h1>Formulaire commande</h1>
         <form onSubmit={this.handleSubmit}>
-          {this.renderInput("title", "Title")}
-          {this.renderSelect("plateformeId", "plateforme", this.state.plateformes)}
+          {this.renderInput("titre", "Titre")}
+          {this.renderSelect(
+            "plateformeId",
+            "plateforme",
+            this.state.plateformes
+          )}
           {this.renderInput("numberInStock", "Number in Stock", "number")}
           {this.renderInput("dailyRentalRate", "Rate")}
           {this.renderButton("Save")}
