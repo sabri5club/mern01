@@ -1,115 +1,142 @@
 import React, { Fragment, Component } from "react";
 import "./Style/Commande.css";
-import { getPlateforme } from "../services/fakeGenreService";
-import { getCommandes } from "../services/fakeMovieService";
+import { getPlateformes } from "../services/fakeGenreService";
+import { getCommandes, deleteCommande } from "../services/fakeMovieService";
 import _ from "lodash";
 import { paginate } from "../utils/paginate.js";
 import CommandeTable from "./commandeTable";
 import ListGroup from "./listGroup";
 import Pagination from "./pagination";
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect } from "react-router-dom";
+import SearchBox from "./searchBox";
 
 class Commande extends Component {
   state = {
-    movies: [],
-    pageSize: 9,
+    commandes: [],
+    plateformes: [],
     currentPage: 1,
-    plateforme: [],
+    pageSize: 4,
+    searchQuery: "",
+    selectedPlateforme: null,
     sortColumn: { path: "title", order: "asc" },
   };
 
   componentDidMount() {
-    const plateforme = [
-      { _id: "", name: "Toutes les commandes" },
-      ...getPlateforme(),
-    ];
-    this.setState({ movies: getCommandes(), plateforme });
+    const plateformes = [{ _id: "", name: "All Genres" }, ...getPlateformes()];
+
+    this.setState({ commandes: getCommandes(), plateformes });
   }
 
-  handleLike = (movie) => {
-    const movies = [...this.state.movies];
-    const index = movies.indexOf(movie);
-    movies[index] = { ...movies[index] };
-    movies[index].liked = !movies[index].liked;
-    this.setState({ movies });
+  handleDelete = (commande) => {
+    const commandes = this.state.commandes.filter(
+      (m) => m._id !== commande._id
+    );
+    this.setState({ commandes });
+
+    deleteCommande(commande._id);
   };
 
-  handleDelete = (movie) => {
-    const movies = this.state.movies.filter((film) => film._id !== movie._id);
-    this.setState({ movies });
-  };
-
-  handlePageSize = (page) => {
-    console.log(page);
+  handleLike = (commande) => {
+    const commandes = [...this.state.commandes];
+    const index = commandes.indexOf(commande);
+    commandes[index] = { ...commandes[index] };
+    commandes[index].liked = !commandes[index].liked;
+    this.setState({ commandes });
   };
 
   handlePageChange = (page) => {
     this.setState({ currentPage: page });
   };
 
-  handleGenderSelect = (gender) => {
-    this.setState({ selectedGenre: gender, currentPage: 1 });
+  handlePlateformeSelect = (plateforme) => {
+    this.setState({
+      selectedPlateforme: plateforme,
+      searchQuery: "",
+      currentPage: 1,
+    });
   };
+
+  handleSearch = (query) => {
+    this.setState({
+      searchQuery: query,
+      selectedPlateforme: null,
+      currentPage: 1,
+    });
+  };
+
   handleSort = (sortColumn) => {
     this.setState({ sortColumn });
   };
-  handleAdd = (movie) => {
-    const movies = this.state.movies;
-    this.setState({ movies });
-  };
-  render() {
-    const { length: count } = this.state.movies;
+
+  getPagedData = () => {
     const {
       pageSize,
       currentPage,
       sortColumn,
-      selectedGenre,
-      movies: allMovies,
+      selectedPlateforme,
+      searchQuery,
+      commandes: allCommandes,
     } = this.state;
-    if (count === 0) return <p>Aucunes commandes dans la base de donnée</p>;
-    const filtered =
-      selectedGenre && selectedGenre._id
-        ? allMovies.filter((m) => m.Plateforme._id === selectedGenre._id)
-        : allMovies;
+
+    let filtered = allCommandes;
+    if (searchQuery)
+      filtered = allCommandes.filter((m) =>
+        m.titre.toLowerCase().startsWith(searchQuery.toLowerCase())
+      );
+    else if (selectedPlateforme && selectedPlateforme._id)
+      filtered = allCommandes.filter(
+        (m) => m.plateforme._id === selectedPlateforme._id
+      );
 
     const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order]);
-    const movies = paginate(sorted, currentPage, pageSize);
+
+    const commandes = paginate(sorted, currentPage, pageSize);
+
+    return { totalCount: filtered.length, data: commandes };
+  };
+
+  render() {
+    const { length: count } = this.state.commandes;
+    const { pageSize, currentPage, sortColumn, searchQuery } = this.state;
+
+    if (count === 0) return <p>There are no commandes in the database.</p>;
+
+    const { totalCount, data: commandes } = this.getPagedData();
 
     return (
-      <Fragment>
-        <div className="container-m">
-          <div className="affichage">
-            <div className=">">
-              <ListGroup
-                items={this.state.plateforme}
-                selectedItem={this.state.selectedGenre}
-                onItemSelect={this.handleGenderSelect}
-              />
-            </div>
-            <Link to="/commandes/new" className="btn btn-primary" style={{marginBottom:20}}> Nouvelle commande </Link>
-            <div className="affichage">
-              <p>
-                Il y a {filtered.length} commandes en attente dans la base de
-                donnée
-              </p>
-              <CommandeTable
-                movies={movies}
-                sortColumn={sortColumn}
-                onLike={this.handleLike}
-                onDelete={this.handleDelete}
-                onAdd={this.handleAdd}
-                onSort={this.handleSort}
-              />
-              <Pagination
-                itemsCount={filtered.length}
-                pageSize={pageSize}
-                onPageChange={this.handlePageChange}
-                currentPage={currentPage}
-              />
-            </div>
-          </div>
+      <div className="row">
+        <div className="col-3">
+          <ListGroup
+            items={this.state.plateformes}
+            selectedItem={this.state.selectedPlateforme}
+            onItemSelect={this.handlePlateformeSelect}
+          />
         </div>
-      </Fragment>
+        <div className="col">
+          <Link
+            to="/commandes/new"
+            className="btn btn-primary"
+            style={{ marginBottom: 20 }}
+          >
+            Nouvelle commandes
+          </Link>
+          <p>Showing {totalCount} commandes in the database.</p>
+          <SearchBox value={searchQuery} onChange={this.handleSearch} />
+          <CommandeTable
+            commandes={commandes}
+            sortColumn={sortColumn}
+            onLike={this.handleLike}
+            onDelete={this.handleDelete}
+            onSort={this.handleSort}
+          />
+          <Pagination
+            itemsCount={totalCount}
+            pageSize={pageSize}
+            currentPage={currentPage}
+            onPageChange={this.handlePageChange}
+          />
+        </div>
+      </div>
     );
   }
 }
