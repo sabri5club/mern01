@@ -15,7 +15,7 @@ class Commande extends Component {
     commandes: [],
     plateformes: [],
     currentPage: 1,
-    pageSize: 4,
+    pageSize: 8,
     searchQuery: "",
     selectedPlateforme: null,
     sortColumn: { path: "title", order: "asc" },
@@ -102,7 +102,8 @@ class Commande extends Component {
     const { length: count } = this.state.commandes;
     const { pageSize, currentPage, sortColumn, searchQuery } = this.state;
 
-    if (count === 0) return <p>There are no commandes in the database.</p>;
+    if (count === 0)
+      return <p>Il n'y a pas de commandes dans la base de donnée.</p>;
 
     const { totalCount, data: commandes } = this.getPagedData();
 
@@ -123,7 +124,7 @@ class Commande extends Component {
           >
             Nouvelle commandes
           </Link>
-          <p>Showing {totalCount} commandes in the database.</p>
+          <p>Affichage de {totalCount} commandes dans la base de donnée.</p>
           <SearchBox value={searchQuery} onChange={this.handleSearch} />
           <CommandeTable
             commandes={commandes}
