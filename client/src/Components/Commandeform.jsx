@@ -23,7 +23,7 @@ class CommandeForm extends Form {
     plateformeId: Joi.string().required().label("Plateforme"),
     quantité: Joi.number().required().min(0).max(100).label("Quantité"),
     statut: Joi.string().required().label("Statut"),
-    urgence: Joi.string().label("Urgence"),
+    urgence: Joi.string().required().label("Urgence"),
   };
 
   componentDidMount() {
@@ -67,7 +67,7 @@ class CommandeForm extends Form {
             "Plateforme",
             this.state.plateformes
           )}
-          {this.renderInput("quantité", "Quantité produit", "Nombre")}
+          {this.renderInput("quantité", "Quantité produit", "number")}
           {this.renderInput("statut", "Statut")}
           {this.renderInput("urgence", "Urgence")}
           {this.renderButton("Save")}
