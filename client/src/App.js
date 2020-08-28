@@ -41,7 +41,7 @@ const App = () => {
           <Route path="/Commande" exact component={Commande} />
           <Route path="/Process" exact component={Process} />
           <Route path="/Valeurs" exact component={Valeurs} />
-          <Route path="/commandes/new" exact component={Commandeform} />
+          {/* <Route path="/commandes/new" exact component={Commandeform} /> */}
           <Route path="/commandes/:id" component={Commandeform} />
           <Route path="/commandes" component={Commande} />
           <Route path="/customers" component={Customers} />
