@@ -61,13 +61,13 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
           </Link>
           <Link to="/Valeurs">
             <li class="nav-item active">
-              <a class="nav-link" href="livres.html">
+              <a class="nav-link">
                 Valeurs<span class="sr-only">(current)</span>
               </a>
             </li>
           </Link>
           <li onClick={logout} class="nav-item active">
-            <a class="nav-link" href="livres.html">
+            <a class="nav-link">
               Déconnexion<span class="sr-only">(current)</span>
             </a>
           </li>
