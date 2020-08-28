@@ -33,7 +33,7 @@ class CommandeTable extends Component {
           onClick={() => this.props.onDelete(commande)}
           className="btn btn-danger btn-sm"
         >
-          Delete
+          Terminer
         </button>
       ),
     },
