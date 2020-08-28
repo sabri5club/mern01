@@ -9,8 +9,9 @@ class CommandeForm extends Form {
     data: {
       titre: "",
       plateformeId: "",
-      numberInStock: "",
-      dailyRentalRate: "",
+      quantité: "",
+      statut: "",
+      urgence: "",
     },
     plateformes: [],
     errors: {},
@@ -19,17 +20,10 @@ class CommandeForm extends Form {
   schema = {
     _id: Joi.string(),
     titre: Joi.string().required().label("Titre"),
-    plateformeId: Joi.string().required().label("plateforme"),
-    numberInStock: Joi.number()
-      .required()
-      .min(0)
-      .max(100)
-      .label("Number in Stock"),
-    dailyRentalRate: Joi.number()
-      .required()
-      .min(0)
-      .max(10)
-      .label("Daily Rental Rate"),
+    plateformeId: Joi.string().required().label("Plateforme"),
+    quantité: Joi.number().required().min(0).max(100).label("Quantité"),
+    statut: Joi.string().required().label("Statut"),
+    urgence: Joi.string().label("Urgence"),
   };
 
   componentDidMount() {
@@ -50,8 +44,9 @@ class CommandeForm extends Form {
       _id: commande._id,
       titre: commande.titre,
       plateformeId: commande.plateforme._id,
-      numberInStock: commande.numberInStock,
-      dailyRentalRate: commande.dailyRentalRate,
+      quantité: commande.quantité,
+      statut: commande.statut,
+      urgence: commande.urgence,
     };
   }
 
@@ -69,11 +64,12 @@ class CommandeForm extends Form {
           {this.renderInput("titre", "Titre")}
           {this.renderSelect(
             "plateformeId",
-            "plateforme",
+            "Plateforme",
             this.state.plateformes
           )}
-          {this.renderInput("numberInStock", "Number in Stock", "number")}
-          {this.renderInput("dailyRentalRate", "Rate")}
+          {this.renderInput("quantité", "Quantité produit", "Nombre")}
+          {this.renderInput("statut", "Statut")}
+          {this.renderInput("urgence", "Urgence")}
           {this.renderButton("Save")}
         </form>
       </div>
