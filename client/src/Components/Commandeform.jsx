@@ -12,6 +12,10 @@ class CommandeForm extends Form {
       quantité: "",
       statut: "",
       urgence: "",
+      transporteur: "",
+      montant: "",
+      mail: "",
+      tel: "",
     },
     plateformes: [],
     errors: {},
@@ -24,6 +28,10 @@ class CommandeForm extends Form {
     quantité: Joi.number().required().min(0).max(100).label("Quantité"),
     statut: Joi.string().required().label("Statut"),
     urgence: Joi.string().required().label("Urgence"),
+    transporteur: Joi.string().required().label("Transporteur"),
+    montant: Joi.number().required().label("Montant"),
+    mail: Joi.string().label("Email"),
+    tel: Joi.string().label("Téléphone"),
   };
 
   componentDidMount() {
@@ -47,6 +55,10 @@ class CommandeForm extends Form {
       quantité: commande.quantité,
       statut: commande.statut,
       urgence: commande.urgence,
+      transporteur: commande.transporteur,
+      montant: commande.montant,
+      mail: commande.mail,
+      tel: commande.tel,
     };
   }
 
@@ -70,7 +82,11 @@ class CommandeForm extends Form {
           {this.renderInput("quantité", "Quantité produit", "number")}
           {this.renderInput("statut", "Statut")}
           {this.renderInput("urgence", "Urgence")}
-          {this.renderButton("Save")}
+          {this.renderInput("transporteur", "Transporteur")}
+          {this.renderInput("montant", "Montant")}
+          {this.renderInput("mail", "Mail")}
+          {this.renderInput("tel", "Téléphone")}
+          {this.renderButton("Sauvegarder")}
         </form>
       </div>
     );

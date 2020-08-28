@@ -9,8 +9,12 @@ const commandes = [
     statut: "En cours",
     date: "2020-08-17",
     urgence: "Elevée",
+    transporteur: "Mondial relay",
     publishDate: "2018-01-03T19:04:28.809Z",
     liked: true,
+    montant: 150,
+    mail: "",
+    tel: "",
   },
   {
     _id: "5b21ca3eeb7f6fbccd471816",
@@ -20,6 +24,10 @@ const commandes = [
     statut: "En cours",
     date: "2020-08-17",
     urgence: "Moyenne",
+    transporteur: "Sook&Co",
+    montant: 13.5,
+    mail: "",
+    tel: "",
   },
   {
     _id: "5b21ca3eeb7f6fbccd471817",
@@ -28,7 +36,11 @@ const commandes = [
     quantité: 8,
     date: "2020-08-17",
     urgence: "Moyenne",
+    transporteur: "Mondial relay",
     statut: "A envoyer",
+    montant: 14.9,
+    mail: "",
+    tel: "",
   },
   {
     _id: "5b21ca3eeb7f6fbccd471819",
@@ -37,7 +49,11 @@ const commandes = [
     quantité: 7,
     date: "2020-08-17",
     urgence: "Moyenne",
+    transporteur: "Mondial relay",
     statut: "A envoyer",
+    montant: 10.9,
+    mail: "",
+    tel: "",
   },
   {
     _id: "5b21ca3eeb7f6fbccd47181a",
@@ -46,7 +62,11 @@ const commandes = [
     quantité: 13,
     date: "2020-08-17",
     urgence: "Moyenne",
+    transporteur: "Mondial relay",
     statut: "A envoyer",
+    montant: 8.9,
+    mail: "",
+    tel: "",
   },
   {
     _id: "5b21ca3eeb7f6fbccd47181b",
@@ -55,7 +75,11 @@ const commandes = [
     quantité: 7,
     date: "2020-08-17",
     urgence: "Moyenne",
+    transporteur: "Mondial relay",
     statut: "A envoyer",
+    montant: 10,
+    mail: "",
+    tel: "",
   },
   {
     _id: "5b21ca3eeb7f6fbccd47181e",
@@ -64,7 +88,11 @@ const commandes = [
     quantité: 12,
     date: "2020-08-17",
     urgence: "Moyenne",
+    transporteur: "Mondial relay",
     statut: "Problème",
+    montant: 55,
+    mail: "",
+    tel: "",
   },
   {
     _id: "5b21ca3eeb7f6fbccd47181f",
@@ -73,7 +101,11 @@ const commandes = [
     quantité: 4,
     date: "2020-08-17",
     urgence: "Elevée",
+    transporteur: "Mondial relay",
     statut: "A envoyer",
+    montant: 44,
+    mail: "",
+    tel: "",
   },
   {
     _id: "5b21ca3eeb7f6fbccd471821",
@@ -82,7 +114,11 @@ const commandes = [
     quantité: 70,
     date: "2020-08-17",
     urgence: "Basse",
+    transporteur: "Mondial relay",
     statut: "A envoyer",
+    montant: 36.5,
+    mail: "",
+    tel: "",
   },
   {
     _id: "5b21ca3eeb7f6fbccd471825",
@@ -91,7 +127,11 @@ const commandes = [
     quantité: 24,
     date: "2020-08-17",
     urgence: "Basse",
+    transporteur: "Mondial relay",
     statut: "A envoyer",
+    montant: 39.9,
+    mail: "",
+    tel: "",
   },
   {
     _id: "5b21ca3eeb7f6fbccd471828",
@@ -100,7 +140,11 @@ const commandes = [
     quantité: 7,
     date: "2020-08-17",
     urgence: "Basse",
+    transporteur: "Mondial relay",
     statut: "A envoyer",
+    montant: 121,
+    mail: "",
+    tel: "",
   },
 ];
 
@@ -121,6 +165,10 @@ export function saveCommande(commande) {
   commandeInDb.quantité = commande.quantité;
   commandeInDb.statut = commande.statut;
   commandeInDb.urgence = commande.urgence;
+  commandeInDb.transporteur = commande.transporteur;
+  commandeInDb.montant = commande.montant;
+  commandeInDb.mail = commande.mail;
+  commandeInDb.tel = commande.tel;
 
   if (!commandeInDb._id) {
     commandeInDb._id = Date.now().toString();

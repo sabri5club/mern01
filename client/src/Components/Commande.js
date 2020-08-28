@@ -122,7 +122,7 @@ class Commande extends Component {
             className="btn btn-primary"
             style={{ marginBottom: 20 }}
           >
-            Nouvelle commandes
+            Nouvelle commande
           </Link>
           <p>Affichage de {totalCount} commandes dans la base de donnée.</p>
           <SearchBox value={searchQuery} onChange={this.handleSearch} />

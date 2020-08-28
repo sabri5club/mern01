@@ -14,9 +14,11 @@ class CommandeTable extends Component {
       ),
     },
     { path: "plateforme.name", label: "Plateforme" },
+    { path: "montant", label: "Montant (€)" },
     { path: "quantité", label: "Quantité Produit" },
     { path: "statut", label: "Statut" },
     { path: "urgence", label: "Urgence" },
+    { path: "transporteur", label: "Transporteur" },
     {
       key: "like",
       content: (commande) => (
