@@ -7,7 +7,7 @@ import { getPlateformes } from "../services/fakeGenreService";
 class CommandeForm extends Form {
   state = {
     data: {
-      titre: "",
+      nom: "",
       plateformeId: "",
       quantité: "",
       statut: "",
@@ -23,7 +23,7 @@ class CommandeForm extends Form {
 
   schema = {
     _id: Joi.string(),
-    titre: Joi.string().required().label("Titre"),
+    nom: Joi.string().required().label("Nom"),
     plateformeId: Joi.string().required().label("Plateforme"),
     quantité: Joi.number().required().min(0).max(100).label("Quantité"),
     statut: Joi.string().required().label("Statut"),
@@ -50,7 +50,7 @@ class CommandeForm extends Form {
   mapToViewModel(commande) {
     return {
       _id: commande._id,
-      titre: commande.titre,
+      nom: commande.nom,
       plateformeId: commande.plateforme._id,
       quantité: commande.quantité,
       statut: commande.statut,
@@ -73,7 +73,7 @@ class CommandeForm extends Form {
       <div>
         <h1>Formulaire commande</h1>
         <form onSubmit={this.handleSubmit}>
-          {this.renderInput("titre", "Titre")}
+          {this.renderInput("nom", "Nom")}
           {this.renderSelect(
             "plateformeId",
             "Plateforme",

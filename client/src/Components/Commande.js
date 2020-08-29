@@ -9,6 +9,7 @@ import ListGroup from "./listGroup";
 import Pagination from "./pagination";
 import { Link, Redirect } from "react-router-dom";
 import SearchBox from "./searchBox";
+import axios from "axios";
 
 class Commande extends Component {
   state = {
@@ -21,13 +22,21 @@ class Commande extends Component {
     sortColumn: { path: "title", order: "asc" },
   };
 
-  componentDidMount() {
-    const plateformes = [
-      { _id: "", name: "Toute plateformes" },
-      ...getPlateformes(),
-    ];
+  async componentDidMount() {
+    // import with axios
 
-    this.setState({ commandes: getCommandes(), plateformes });
+    const { data: commandes } = await axios.get(
+      "http://localhost:8080/api/commande"
+    );
+    this.setState({ commandes });
+    console.log(commandes);
+
+    // const plateformes = [
+    //   { _id: "", name: "Toute plateformes" },
+    //   ...getPlateformes(),
+    // ];
+
+    // this.setState({ commandes: getCommandes(), plateformes });
   }
 
   handleDelete = (commande) => {
@@ -84,7 +93,7 @@ class Commande extends Component {
     let filtered = allCommandes;
     if (searchQuery)
       filtered = allCommandes.filter((m) =>
-        m.titre.toLowerCase().startsWith(searchQuery.toLowerCase())
+        m.nom.toLowerCase().startsWith(searchQuery.toLowerCase())
       );
     else if (selectedPlateforme && selectedPlateforme._id)
       filtered = allCommandes.filter(

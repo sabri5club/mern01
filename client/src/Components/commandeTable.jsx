@@ -7,10 +7,10 @@ import "./Style/commandeTable.css";
 class CommandeTable extends Component {
   columns = [
     {
-      path: "titre",
-      label: "Titre",
+      path: "nom",
+      label: "Nom",
       content: (commande) => (
-        <Link to={`/commandes/${commande._id}`}>{commande.titre}</Link>
+        <Link to={`/commandes/${commande._id}`}>{commande.nom}</Link>
       ),
     },
     { path: "plateforme.name", label: "Plateforme" },

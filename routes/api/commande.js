@@ -38,7 +38,7 @@ router.post(
     auth,
     [
       check("nom", "nom est requis").not().isEmpty(),
-      check("alerte", "alerte est requis").not().isEmpty(),
+      // check("alerte", "alerte est requis").not().isEmpty(),
     ],
   ],
   async (req, res) => {
@@ -49,10 +49,11 @@ router.post(
 
     const {
       nom,
-      reference,
-      description,
-      alerte,
+      plateforme,
+      quantité,
+      statut,
       montant,
+      urgence,
       numero,
       email,
       transporteur,
@@ -66,30 +67,32 @@ router.post(
     commandeFields.user = req.user.id;
 
     if (nom) commandeFields.nom = nom;
-    if (reference) commandeFields.reference = reference;
-    if (description) commandeFields.description = description;
-    if (alerte) commandeFields.alerte = alerte;
+    if (plateforme) commandeFields.plateforme = plateforme;
+    if (quantité) commandeFields.quantité = quantité;
+    if (statut) commandeFields.statut = statut;
+    if (urgence) commandeFields.urgence = urgence;
     if (montant) commandeFields.montant = montant;
     if (numero) commandeFields.numero = numero;
     if (email) commandeFields.email = email;
     if (transporteur) commandeFields.transporteur = transporteur;
     if (date) commandeFields.date = date;
 
+    // try {
+    //   let commande = await Commande.findOne({ user: req.user.id });
+
+    //   if (commande) {
+    //     commande = await Commande.findOneAndUpdate(
+    //       { user: req.user.id },
+    //       { $set: commandeFields },
+    //       { new: true }
+    //     );
+
+    //     return res.json(commande);
+    //   }
+
+    // Création d'une nouvelle commande
+
     try {
-      let commande = await Commande.findOne({ user: req.user.id });
-
-      if (commande) {
-        commande = await Commande.findOneAndUpdate(
-          { user: req.user.id },
-          { $set: commandeFields },
-          { new: true }
-        );
-
-        return res.json(commande);
-      }
-
-      // Création d'une nouvelle commande
-
       commande = new Commande(commandeFields);
 
       await commande.save();
