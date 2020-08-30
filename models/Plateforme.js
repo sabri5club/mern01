@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
 
-const PlateformeSchema = new mongoose.Schema({
-  name: { type: String }
+const PlateformeSchema = mongoose.Schema({
+  name: {type: String, required:true
+  },
 });
 
 module.exports = Plateforme = mongoose.model("plateforme", PlateformeSchema);

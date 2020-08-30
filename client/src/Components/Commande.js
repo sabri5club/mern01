@@ -25,16 +25,22 @@ class Commande extends Component {
   async componentDidMount() {
     // import with axios
 
-    const { data: commandes } = await axios.get(
+    const  {data: commandes}  = await axios.get(
       "http://localhost:8080/api/commande"
     );
     this.setState({ commandes });
     console.log(commandes);
 
-    const plateformes = [
-      { _id: "", name: "Toute plateformes" },
-      ...getPlateformes(),
-    ];
+    // const plateformes = [
+    //   { _id: "", name: "Toute plateformes" },
+    //   commandes,
+    // ];
+    const  { data: modalite } = await axios.get(
+      "http://localhost:8080/api/plateforme"
+    ) ;
+    
+    const plateformes = [ { _id: "", name: "Toute plateformes" }, ... modalite];
+    // plateformes.push({ _id: "", name: "Toute plateformes" });
 
     this.setState({  plateformes });
   }

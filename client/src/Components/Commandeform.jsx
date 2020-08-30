@@ -1,8 +1,7 @@
 import React from "react";
 import Joi from "joi-browser";
 import Form from "./common/form";
-import { getCommande, saveCommande } from "../services/fakeMovieService";
-import { getPlateformes } from "../services/fakeGenreService";
+import { saveCommande } from "../services/fakeMovieService";
 import axios from "axios";
 
 class CommandeForm extends Form {
@@ -36,7 +35,9 @@ class CommandeForm extends Form {
   };
 
   async componentDidMount() {
-    const plateformes = getPlateformes();
+    const { data: plateformes } = await axios.get(
+      "http://localhost:8080/api/plateforme"
+    );
     this.setState({ plateformes });
 
     const commandeId = this.props.match.params.id;
@@ -47,7 +48,6 @@ class CommandeForm extends Form {
     );
     if (!commande) return this.props.history.replace("/not-found");
     // const commande = getCommande(commandeId);
-
 
     this.setState({ data: this.mapToViewModel(commande) });
   }

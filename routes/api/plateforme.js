@@ -42,27 +42,22 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
-
-  
-  
-
-      
-  
-    const plateforme = new Plateforme({
-        name: req.body.name
-    })
-
-    try {
-    //   const plateformes = await Plateforme.find();
-    //   res.json(plateformes);
-    const p1= await plateforme.save()
-    res.json(p1)
-    } catch (err) {
-      res.status(500).send("server error au niveau des platformes");
-    }
+router.post("/", (req, res) => {
+  const plateforme = new Plateforme({
+    name: req.body.name,
   });
 
+  //   const plateformes = await Plateforme.find();
+  //   res.json(plateformes);
+  plateforme
+    .save()
 
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((err) => {
+      res.json({ message: err });
+    });
+});
 
 module.exports = router;
