@@ -3,6 +3,7 @@ import Joi from "joi-browser";
 import Form from "./common/form";
 import { getCommande, saveCommande } from "../services/fakeMovieService";
 import { getPlateformes } from "../services/fakeGenreService";
+import axios from "axios";
 
 class CommandeForm extends Form {
   state = {
@@ -34,15 +35,19 @@ class CommandeForm extends Form {
     tel: Joi.string().label("Téléphone"),
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     const plateformes = getPlateformes();
     this.setState({ plateformes });
 
     const commandeId = this.props.match.params.id;
     if (commandeId === "new") return;
 
-    const commande = getCommande(commandeId);
+    const { data: commande } = await axios.get(
+      "http://localhost:8080/api/commande"
+    );
     if (!commande) return this.props.history.replace("/not-found");
+    // const commande = getCommande(commandeId);
+
 
     this.setState({ data: this.mapToViewModel(commande) });
   }

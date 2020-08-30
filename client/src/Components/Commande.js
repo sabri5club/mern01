@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./Style/Commande.css";
-// import { getPlateformes } from "../services/fakeGenreService";
+import { getPlateformes } from "../services/fakeGenreService";
 import { deleteCommande } from "../services/fakeMovieService";
 import _ from "lodash";
 import { paginate } from "../utils/paginate.js";
@@ -31,12 +31,12 @@ class Commande extends Component {
     this.setState({ commandes });
     console.log(commandes);
 
-    // const plateformes = [
-    //   { _id: "", name: "Toute plateformes" },
-    //   ...getPlateformes(),
-    // ];
+    const plateformes = [
+      { _id: "", name: "Toute plateformes" },
+      ...getPlateformes(),
+    ];
 
-    // this.setState({ commandes: getCommandes(), plateformes });
+    this.setState({  plateformes });
   }
 
   handleDelete = (commande) => {

@@ -49,7 +49,7 @@ router.post(
 
     const {
       nom,
-      plateformeId,
+      plateforme,
       quantité,
       statut,
       montant,
@@ -67,7 +67,7 @@ router.post(
     commandeFields.user = req.user.id;
 
     if (nom) commandeFields.nom = nom;
-    if (plateformeId) commandeFields.plateformeId = plateformeId;
+    if (plateforme) commandeFields.plateforme = plateforme;
     if (quantité) commandeFields.quantité = quantité;
     if (statut) commandeFields.statut = statut;
     if (urgence) commandeFields.urgence = urgence;

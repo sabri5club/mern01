@@ -9,12 +9,9 @@ const CommandeSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  plateformeId: [
+  plateforme: [
     {
       name: {
-        type: String,
-      },
-      id: {
         type: String,
       },
     },
