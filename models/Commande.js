@@ -9,16 +9,25 @@ const CommandeSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  plateforme: { type: String, required: true },
-  quantité: {
-    type: Number,
-    required: false,
-  },
+  plateformeId: [
+    {
+      name: {
+        type: String,
+      },
+      id: {
+        type: String,
+      },
+    },
+  ],
   statut: {
     type: String,
     required: false,
   },
   montant: {
+    type: Number,
+    required: false,
+  },
+  quantité: {
     type: Number,
     required: false,
   },

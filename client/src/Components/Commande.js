@@ -1,13 +1,13 @@
-import React, { Fragment, Component } from "react";
+import React, { Component } from "react";
 import "./Style/Commande.css";
-import { getPlateformes } from "../services/fakeGenreService";
-import { getCommandes, deleteCommande } from "../services/fakeMovieService";
+// import { getPlateformes } from "../services/fakeGenreService";
+import { deleteCommande } from "../services/fakeMovieService";
 import _ from "lodash";
 import { paginate } from "../utils/paginate.js";
 import CommandeTable from "./commandeTable";
 import ListGroup from "./listGroup";
 import Pagination from "./pagination";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import SearchBox from "./searchBox";
 import axios from "axios";
 
